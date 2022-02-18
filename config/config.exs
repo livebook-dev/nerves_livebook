@@ -20,6 +20,14 @@ config :nerves, source_date_epoch: "1603310828"
 # Use Jason for JSON parsing in Phoenix
 config :phoenix, :json_library, Jason
 
+# Add mime type to upload notebooks with `Phoenix.LiveView.Upload`
+config :mime, :types, %{
+  "text/plain" => ["livemd"]
+}
+
+# Sets the default storage backend
+config :livebook, :storage, Livebook.Storage.Ets
+
 # Livebook's explore section is built at compile-time
 config :livebook, :explore_notebooks, []
 
