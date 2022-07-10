@@ -47,7 +47,6 @@ defmodule NervesLivebook.MixProject do
       {:toolshed, "~> 0.2.13"},
       {:jason, "~> 1.2"},
       {:nerves_runtime, "~> 0.13.0"},
-      {:nerves_pack, "~> 0.7.0"},
       {:livebook, "~> 0.6.2"},
       {:plug, "~> 1.12"},
 
@@ -65,6 +64,7 @@ defmodule NervesLivebook.MixProject do
       {:kino_vega_lite, "~> 0.1.1"},
       {:maplibre, "~> 0.1.0"},
       {:nerves_key, "~> 1.0", targets: @all_targets},
+      {:nerves_pack, "~> 0.7.0", targets: @all_targets},
       {:nerves_time_zones, "~> 0.2.0", targets: @all_targets},
       {:nx, "~> 0.2.0"},
       {:phoenix_pubsub, "~> 2.0"},
