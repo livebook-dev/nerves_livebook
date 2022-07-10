@@ -31,11 +31,15 @@ defmodule NervesLivebook do
   Convenience method for checking internet-connectivity for a Livebook
   """
   @spec check_internet!() :: :ok
-  def check_internet!() do
-    unless target() == :host or VintageNet.get(["connection"]) == :internet,
-      do: raise("Please check that at least one network interface can reach the internet")
+  if Mix.target() == :host do
+    def check_internet!(), do: :ok
+  else
+    def check_internet!() do
+      unless VintageNet.get(["connection"]) == :internet,
+        do: raise("Please check that at least one network interface can reach the internet")
 
-    :ok
+      :ok
+    end
   end
 
   def ssh_check_pass(_provided_username, provided_password) do

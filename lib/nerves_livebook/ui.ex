@@ -30,8 +30,7 @@ defmodule NervesLivebook.UI do
     with {:ok, led} <- Keyword.fetch(opts, :led),
          true <- is_binary(led),
          :ok <- PatternLED.initialize_led(led) do
-      VintageNet.subscribe(["connection"])
-      update_led(led, VintageNet.get(["connection"]))
+      setup_led(led)
 
       {:ok, led}
     else
@@ -56,6 +55,15 @@ defmodule NervesLivebook.UI do
     else
       {:error, reason} ->
         Logger.info("NervesLivebook failed to set LED '#{led}': #{inspect(reason)}")
+    end
+  end
+
+  if Mix.target() == :host do
+    defp setup_led(_led), do: :ok
+  else
+    defp setup_led(led) do
+      VintageNet.subscribe(["connection"])
+      update_led(led, VintageNet.get(["connection"]))
     end
   end
 
